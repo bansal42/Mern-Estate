@@ -1,4 +1,4 @@
-export const test=(re,res)=> {
+export const test=(req,res)=> {
     res.json({
         message:'Working',
     });
