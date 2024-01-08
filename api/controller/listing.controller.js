@@ -26,7 +26,7 @@ export const createListing = async (req, res, next) => {
     }
   };
 
-  export const updatedListing = async (req,res,next)=>{
+  export const updateListing = async (req,res,next)=>{
     const listing= await Listing.findById(req.params.id);
     if(!listing){
       return next(errorHandler(404,'Listing not found!!'));
@@ -35,12 +35,24 @@ export const createListing = async (req, res, next) => {
       return next(errorHandler(401,'You can update your own listing only!!'));
     }
     try {
-      const updatedListing=await Listing.findByIdAndUpdate(
+      const updateListing=await Listing.findByIdAndUpdate(
         req.params.id,
         req.body,
         { new: true }
       );
       res.status(200).json(updatedListing);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  export const getListing = async (req,res,next)=>{
+    try {
+      const listing= await Listing.findById(req.params.id);
+      if(!listing){
+        return next(errorHandler(404,'Listing not found!!'));
+      }
+      res.status(200).json(listing);
     } catch (error) {
       next(error);
     }
