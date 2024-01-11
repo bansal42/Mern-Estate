@@ -248,6 +248,15 @@ export default function Search() {
             listings.map((listing) => (
               <ListingItem key={listing._id} listing={listing} />
             ))}
+
+          {showMore && (
+            <button
+              onClick={onShowMoreClick}
+              className='text-green-700 hover:underline p-7 text-center w-full'
+            >
+              Show more
+            </button>
+          )}
         </div>
       </div>
     </div>
